@@ -674,39 +674,43 @@ function renderHtml(initData) {
         margin-top: 28px;
       }
       .connectivity-panel {
-        border: 1px solid var(--surface-border-strong);
-        border-radius: 14px;
-        background: linear-gradient(180deg, var(--surface-top-strong), var(--surface-tint));
-        box-shadow: 0 1px 4px rgba(15, 23, 42, 0.05), 0 4px 12px rgba(15, 23, 42, 0.04);
-        padding: 12px;
-      }
-      html.dark .connectivity-panel {
-        box-shadow: 0 1px 4px rgba(2, 8, 23, 0.32), 0 4px 12px rgba(2, 8, 23, 0.22);
+        padding: 0;
       }
       .connectivity-grid {
         display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 8px;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
+      }
+      @media (min-width: 768px) {
+        .connectivity-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+      @media (min-width: 1024px) {
+        .connectivity-grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
       }
       .connectivity-card {
         min-width: 0;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.74), rgba(248, 250, 252, 0.68));
-        padding: 8px 10px;
+        border: 1px solid var(--surface-border);
+        border-radius: 1rem;
+        background: linear-gradient(180deg, var(--surface-top), var(--surface));
+        box-shadow: var(--shadow-soft), inset 0 1px 0 var(--surface-highlight);
+        backdrop-filter: blur(24px) saturate(160%);
+        padding: 10px 12px;
         display: flex;
         align-items: center;
         gap: 7px;
       }
       html.dark .connectivity-card {
-        border-color: rgba(148, 163, 184, 0.14);
-        background: rgba(15, 23, 42, 0.32);
+        border-color: var(--surface-border);
       }
       .connectivity-card:hover {
-        background: rgba(241, 245, 249, 0.86);
+        background: linear-gradient(180deg, color-mix(in srgb, var(--surface-top) 90%, white 10%), color-mix(in srgb, var(--surface) 92%, white 8%));
       }
       html.dark .connectivity-card:hover {
-        background: rgba(30, 41, 59, 0.48);
+        background: linear-gradient(180deg, color-mix(in srgb, var(--surface-top) 92%, white 8%), color-mix(in srgb, var(--surface) 96%, white 4%));
       }
       .connectivity-icon {
         width: 16px;
@@ -759,12 +763,8 @@ function renderHtml(initData) {
         100% { opacity: 1; transform: translateY(0); filter: blur(0); }
       }
       @media (max-width: 768px) {
-        .connectivity-grid {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 6px;
-        }
         .connectivity-panel {
-          padding: 10px;
+          padding: 0;
         }
         .connectivity-card {
           padding: 7px 8px;
